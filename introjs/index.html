@@ -4,19 +4,22 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>javascriptintro</title>
-  </head>
-  <body style="background-color: yellow;">
-    <h1>let's learn java script</h1>
     <style>
-      h1 {
-        color: blue;
+      body {
+        font-family: Arial, sans-serif;
+        background-color: black;
+        color: white;
       }
-    </style>
 
+    </style>
+<head>
+  <body>
     <script>
-    //    console.log ("Muna") 
-    document.body.style.backgroundColor= "green"
-    alert("Hello my name is Muna")
+      for (let index = 0; index < 1000; index++) {
+        let welcome = document.createElement("h1");
+        welcome.textContent = "welcome to my website";
+        document.body.appendChild(welcome);
+      }
     </script>
   </body>
 </html>
