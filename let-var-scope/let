@@ -1,0 +1,21 @@
+var firstName = "Muna"; // Global scope
+firstName = "Adna";
+console.log(firstName);
+
+var age = (33)
+
+
+{
+  var firstName = "Sadiya"; // Local scope
+    console.log(firstName); // Output: osman
+    
+    var lastName = "Osman" 
+    console.log(lastName)
+    console.log (age)
+}
+
+console.log(firstName);
+console.log(lastName)
+
+
+
