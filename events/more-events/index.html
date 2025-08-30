@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>JS Events Demo</title>
+  <style>
+    :root { --bg:#f6f7fb; --card:#fff; --ink:#222; --muted:#666; --accent:#e7603c; }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; font-family: system-ui, Arial, sans-serif; color: var(--ink);
+      background: var(--bg); padding: 24px;
+    }
+    h1 { margin: 0 0 12px 0; }
+    .grid {
+      display: grid; gap: 16px;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      align-items: start;
+    }
+    .card {
+      background: var(--card); border-radius: 12px; padding: 16px 18px;
+      box-shadow: 0 6px 18px rgba(0,0,0,.08);
+    }
+    .muted { color: var(--muted); font-size: .9rem; }
+    .mouse-area {
+      border: 2px dashed var(--accent);
+      border-radius: 10px; height: 220px;
+      display: grid; place-items: center; user-select: none;
+      background: #fff7f4;
+    }
+    .log {
+      height: 140px; overflow: auto; border: 1px solid #eee; border-radius: 8px;
+      padding: 8px; background: #fafafa; font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    }
+    .row { display: flex; gap: 10px; align-items: center; }
+    label { font-weight: 600; }
+    input, button {
+      font: inherit; padding: 8px 10px; border-radius: 8px; border: 1px solid #ddd;
+    }
+    button { cursor: pointer; border: 0; background: var(--accent); color: white; }
+    button.secondary { background: #e0e0e0; color: #222; }
+    .pill {
+      display: inline-block; padding: 2px 8px; border-radius: 999px;
+      background: #eee; font-size: .8rem; margin-left: 6px;
+    }
+    .kv { display: grid; grid-template-columns: 140px 1fr; gap: 6px; }
+    .ok { color: #1b7f2f; font-weight: 700; }
+    .warn { color: #b03a2e; font-weight: 700; }
+  </style>
+</head>
+<body>
+  <h1>JavaScript Events Demo</h1>
+  <p class="muted">Interact with each panel and watch events fire in the logs.</p>
+
+  <div class="grid">
+    <!-- Mouse Events -->
+    <section class="card">
+      <h2>Mouse Events <span class="pill">down / up / click / move / over / out</span></h2>
+      <div id="mouseArea" class="mouse-area" tabindex="0" aria-label="Mouse playground">
+        Move, click, enter, and leave here
+      </div>
+      <div class="kv" style="margin-top:12px">
+        <div>Last event:</div><div id="mouseLast">—</div>
+        <div>Mouse position:</div><div id="mousePos">x: —, y: —</div>
+        <div>Move count:</div><div id="moveCount">0</div>
+      </div>
+      <h4>Log</h4>
+      <div id="mouseLog" class="log" aria-live="polite"></div>
+    </section>
+
+    <!-- Keyboard Events -->
+    <section class="card">
+      <h2>Keyboard Events <span class="pill">keydown / keypress / keyup</span></h2>
+      <div class="row" style="margin-bottom:10px">
+        <label for="keyInput">Type here:</label>
+        <input id="keyInput" placeholder="Focus and type…" autocomplete="off" />
+      </div>
+      <div class="kv">
+        <div>Last keydown:</div><div id="kd">—</div>
+        <div>Last keypress:</div><div id="kp">—</div>
+        <div>Last keyup:</div><div id="ku">—</div>
+      </div>
+      <h4>Log</h4>
+      <div id="keyLog" class="log" aria-live="polite"></div>
+      <p class="muted">Note: <code>keypress</code> is deprecated in modern browsers but included to match the slide.</p>
+    </section>
+
+    <!-- Form Events -->
+    <section class="card">
+      <h2>Form Events <span class="pill">focus / blur / invalid / reset / submit</span></h2>
+      <form id="demoForm" novalidate>
+        <div class="row" style="margin-bottom:10px">
+          <label for="name" style="min-width:80px">Name</label>
+          <input id="name" name="name" required placeholder="Your name" />
+        </div>
+        <div class="row" style="margin-bottom:10px">
+          <label for="email" style="min-width:80px">Email</label>
+          <input id="email" name="email" type="email" required placeholder="you@example.com" />
+        </div>
+        <div class="row" style="gap:8px">
+          <button type="submit">Submit</button>
+          <button type="reset" class="secondary">Reset</button>
+        </div>
+      </form>
+      <div class="kv" style="margin-top:12px">
+        <div>Last form event:</div><div id="formLast">—</div>
+        <div>Status:</div><div id="formStatus" class="muted">Waiting…</div>
+      </div>
+      <h4>Log</h4>
+      <div id="formLog" class="log" aria-live="polite"></div>
+      <p class="muted">Try focusing/blur on fields, submit with missing/invalid data, or press Reset.</p>
+    </section>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
+

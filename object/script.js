@@ -1,7 +1,7 @@
 
 
 
-let person = {
+let person = {  // Variable
     name: "John",
     age: 30,
     isMarried: true,
@@ -16,5 +16,5 @@ let person = {
 }
 
 person.name = "Muna";
-console.log(person.occupation); //. Notation
-console.log (person["occupation"])
+console.log(person.occupation); //. Dot Notation
+console.log (person["occupation"]) // Square bracket Notation
